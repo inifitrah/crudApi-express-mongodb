@@ -18,6 +18,9 @@ app.get("/", (req, res) => {
 const controllerProduct = require('./product/product.controller')
 app.use('/products', controllerProduct)
 
-app.listen(PORT, () => {
+app.listen(PORT || 2000, () => {
   console.log(`API is running PORT ${PORT}`);
 });
+
+
+export default app
