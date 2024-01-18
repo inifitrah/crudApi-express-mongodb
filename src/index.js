@@ -22,3 +22,4 @@ app.listen(PORT || 2000, () => {
   console.log(`API is running PORT ${PORT}`);
 });
 
+module.exports = app

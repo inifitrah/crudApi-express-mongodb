@@ -12,9 +12,6 @@ const getAllProducts = async () => {
 };
 
 const getProductsById = async (id) => {
-  if (isNaN(id)) {
-    throw new Error("ID is NaN");
-  }
 
   const product = await findProductById(id);
 
@@ -32,15 +29,11 @@ const createNewProduct = async (newProductData) => {
 
 const deleteProductById = async (id) => {
    await getProductsById(id);
-   await deleteProduct(id);
+   await deleteProduct(id); 
 };
 
 const editProductById = async (id, productData) => {
-  try {
     return await editProduct(id, productData);
-  } catch (error) {
-    throw Error(error)
-  }
 };
 
 module.exports = {

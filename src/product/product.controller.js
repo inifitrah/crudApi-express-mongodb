@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router()
 const { getAllProducts, getProductsById, createNewProduct, deleteProductById, editProductById } = require('./product.service')
-const response = require('../response')
 router.get("/", async (req, res) => {
   try { 
     // response(300, await getAllProducts(), 'success', res)
@@ -13,7 +12,7 @@ router.get("/", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   try {
-    const productId = parseInt(req.params.id); 
+    const productId = req.params.id; 
     res.send(await getProductsById(productId));
   } catch (error) {
    res.status(400).send(error.message)
@@ -35,7 +34,7 @@ router.post("/", async (req, res) => {
 
 router.delete("/:id", async (req, res) => {
   try {
-    const productId = parseInt(req.params.id);
+    const productId = req.params.id;
     await deleteProductById(productId);
     res.send({
       message: `success deleted product id: ${productId}`,
@@ -47,7 +46,7 @@ router.delete("/:id", async (req, res) => {
 
 router.put("/:id", async (req, res) => {
   const productData = req.body;
-  const productId = parseInt(req.params.id)
+  const productId = req.params.id
   const lengthObject = Object.keys(productData).length;
 
   if (lengthObject != 4) {
@@ -64,7 +63,7 @@ router.put("/:id", async (req, res) => {
 
 router.patch("/:id", async (req, res) => {
 try {
-    const productId = parseInt(req.params.id);
+    const productId = req.params.id;
     const productData = req.body;
     const product = await editProductById(productId, productData);
     res.send({
